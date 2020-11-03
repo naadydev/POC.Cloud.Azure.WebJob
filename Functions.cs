@@ -7,6 +7,13 @@ namespace BIM.Domain.Reports.PDF.WebJob
 {
     public class Functions
     {        
+        private readonly IConfiguration _configuration;
+        public Functions(IConfiguration configuration)
+        {
+            _configuration = configuration;
+           var val = _configuration["ServiceBus:ConnectionString"];
+        }
+        
         // [Timeout("00:00:15")]
         // [Singleton]
         public async Task ProcessQueueMessage([ServiceBusTrigger(
